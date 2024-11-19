@@ -1,0 +1,64 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:AmHangryUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AmHangryUI.Views.IngredientDisplayView"
+             x:DataType="vm:IngredientDisplayViewModel">
+  
+  <StackPanel Grid.Row="1" Grid.Column="1" Margin="20">
+
+    <Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+			</Grid.ColumnDefinitions>
+			<TextBlock Text="Ingredient Name:" Grid.Column="0" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+			<TextBlock Text="{Binding Ingredient.Name}" Grid.Column="1" Margin="5" />
+			<TextBlock Text="Category:" Grid.Column="2" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+			<TextBlock Text="{Binding Ingredient.Category}" Grid.Column="3" Margin="5"/>
+	</Grid>
+
+    <Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+			</Grid.ColumnDefinitions>
+			<TextBlock Text="Amount:" Grid.Column="0" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+			<TextBlock Text="{Binding Ingredient.Amount}" Grid.Column="1" Margin="5" />
+			<TextBlock Text="Unit:" Grid.Column="2" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+			<TextBlock Text="{Binding IngredientStringUnit}" Grid.Column="3" Margin="5"/>
+		</Grid>
+    <Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+			</Grid.ColumnDefinitions>
+			<TextBlock Text="Protein:" Grid.Column="0" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+			<TextBlock Text="{Binding Ingredient.Protein}" Grid.Column="1" Margin="5" />
+			<TextBlock Text="Fat:" Grid.Column="2" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+			<TextBlock Text="{Binding Ingredient.Fat}" Grid.Column="3" Margin="5"/>
+		</Grid>
+
+    <Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+			</Grid.ColumnDefinitions>
+			<TextBlock Text="Carbs:" Grid.Column="0" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+			<TextBlock Text="{Binding Ingredient.Carbs}" Grid.Column="1" Margin="5" />
+			<TextBlock Text="Cost:" Grid.Column="2" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+			<TextBlock Text="{Binding Ingredient.Cost, StringFormat='{}{0} $'}" Grid.Column="3" Margin="5"/>
+		</Grid>
+
+  </StackPanel>
+</UserControl>

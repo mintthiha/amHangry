@@ -1,0 +1,48 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:AmHangryUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AmHangryUI.Views.ProfilePictureView"
+             x:DataType="vm:ProfilePictureViewModel">
+   
+   <DockPanel Background="Black" Grid.Column="1" Grid.Row="1">
+    <Grid DockPanel.Dock="Top" VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Orientation="Vertical">
+            <Image Source="../Assets/Default.jpg" Width="200" Height="200"/>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding UpdateProfilePictureCommand}" CommandParameter="../Assets/Default.jpg">Select Image 1</Button>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Orientation="Vertical">
+            <Image Source="../Assets/Default2.jpg" Width="200" Height="200"/>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding UpdateProfilePictureCommand}" CommandParameter="../Assets/Default2.jpg">Select Image 2</Button>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Orientation="Vertical">
+            <Image Source="../Assets/Default3.png" Width="200" Height="200"/>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding UpdateProfilePictureCommand}" CommandParameter="../Assets/Default3.png">Select Image 3</Button>
+        </StackPanel>
+        <StackPanel Grid.Column="3" Orientation="Vertical">
+            <Image Source="../Assets/Default4.png" Width="200" Height="200"/>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding UpdateProfilePictureCommand}" CommandParameter="../Assets/Default4.png">Select Image 4</Button>
+        </StackPanel>
+        <StackPanel Grid.Column="4" Orientation="Vertical">
+            <Image Source="../Assets/Thiha2.jpg" Width="200" Height="200"/>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding UpdateProfilePictureCommand}" CommandParameter="../Assets/Thiha2.jpg">Select Image 5</Button>
+        </StackPanel>
+    </Grid>
+        <Button DockPanel.Dock="Bottom" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.ProfileView}" IsVisible="{Binding $parent[Window].DataContext.VisibleMember}">Done</Button>
+        <Button DockPanel.Dock="Bottom" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.ProfileDetails}" CommandParameter="{Binding LoggedUser}" IsVisible="{Binding $parent[Window].DataContext.VisibleAdmin}">Done</Button>
+
+    <TextBlock DockPanel.Dock="Bottom" FontSize="25" Text="{Binding Message}" HorizontalAlignment="Center" />
+
+</DockPanel>
+
+</UserControl>

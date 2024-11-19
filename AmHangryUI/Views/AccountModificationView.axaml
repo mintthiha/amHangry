@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:AmHangryUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AmHangryUI.Views.AccountModificationView"
+             x:DataType="vm:AccountModificationViewModel">
+
+   <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <StackPanel>
+        <ItemsControl ItemsSource="{Binding Members}" HorizontalAlignment="Center">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" Margin="20"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="2,2,2,2" BorderBrush="#FF1333FF" Margin="0,0,20,20">
+                        <StackPanel Margin="10">
+                            <TextBlock Text="{Binding Username, StringFormat='Name: {0}'}" Padding="2" />
+                            <Button x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.ProfileDetails}" CommandParameter="{ Binding }">Member's detail</Button>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+   </ScrollViewer>
+</UserControl>

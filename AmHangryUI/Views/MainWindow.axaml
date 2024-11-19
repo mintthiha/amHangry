@@ -1,0 +1,46 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AmHangryUI.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="500"
+        x:Class="AmHangryUI.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="{Binding Title}"
+        x:Name="mainWindow">
+  <Window.Styles>
+    <Style Selector="Border.mw-Border">
+      <Setter Property="Background" Value="#115ffe"/>
+      <Setter Property="BorderBrush" Value="#FF559BAE"/>
+    </Style>
+  </Window.Styles>
+        <Grid RowDefinitions="150, *" ColumnDefinitions="250, *">
+        <Border Classes="mw-Border" BorderThickness="2" Grid.Row="0" Grid.Column="0" IsVisible="{Binding VisibleNavigation}">
+          <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center">
+              <TextBlock Text="AmHangry" FontSize="28"/>
+          </StackPanel>
+        </Border>
+
+        <Border Classes="mw-Border" BorderThickness="2" Grid.Column="1" Grid.Row="0" IsVisible="{Binding VisibleNavigation}" >
+          <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="{Binding Title}" FontSize="28"/>
+          </StackPanel>
+        </Border>
+      
+        <StackPanel Background="#FF3E8AFF" Grid.Column="0" Grid.Row="1" IsVisible="{Binding VisibleNavigation}">
+          <Button Foreground="White" Background="Transparent" HorizontalAlignment="Center" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.UserHomeView}">🛖Homepage🛖</Button>
+          <Button Foreground="White" Background="Transparent" HorizontalAlignment="Center" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.ProfileView}" IsVisible="{Binding VisibleMember}">📄My Profile📄</Button>
+          <Button Foreground="White" Background="Transparent" HorizontalAlignment="Center" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.OwnedRecipesView}" IsVisible="{Binding VisibleMember}">🍝My Recipes🍕</Button>
+          <Button Foreground="White" Background="Transparent" HorizontalAlignment="Center" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.FavouriteRecipeView}" IsVisible="{Binding VisibleMember}">❤️My Favorite list❤️</Button>
+          <Button Foreground="White" Background="Transparent" HorizontalAlignment="Center" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.RecentRecipeView}" IsVisible="{Binding VisibleMember}">👀My Recent list👀</Button>
+          <Button Foreground="White" Background="Transparent" HorizontalAlignment="Center" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.IngredientsView}">🍒Ingredients list🍑</Button>
+          <Button Foreground="White" Background="Transparent" HorizontalAlignment="Center" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.CreateRecipe}" IsVisible="{Binding VisibleMember}">🔨Create Recipe🔨</Button>
+          <Button Foreground="White" Background="Transparent" HorizontalAlignment="Center" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.SearchView}" >🛒Search Recipe🛒</Button>
+          <Button Foreground="White" Background="Transparent" HorizontalAlignment="Center" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.OwnedRecipesView}" IsVisible="{Binding VisibleAdmin}">🚧(Admin) Recipe Modification🚧</Button>
+          <Button Foreground="White" Background="Transparent" HorizontalAlignment="Center" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.AccountModificationView}" IsVisible="{Binding VisibleAdmin}">🪛(Admin) Account modification🪛</Button>
+          <Button Foreground="White" Background="Transparent" HorizontalAlignment="Center" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.ExecuteLogOut}">Log Out</Button>
+        </StackPanel>
+        <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding ContentViewModel}"/>
+      </Grid>
+</Window>

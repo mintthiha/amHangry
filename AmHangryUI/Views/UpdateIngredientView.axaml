@@ -1,0 +1,60 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:AmHangryUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AmHangryUI.Views.UpdateIngredientView"
+             x:DataType="vm:UpdateIngredientViewModel">
+  <StackPanel Grid.Row="1" Grid.Column="1" Margin="20">
+    <TextBlock FontSize="24" Foreground="White" Text="THIS IS TO UPDATE AN IGREDIENT!" Background="Transparent" HorizontalAlignment="Center"/>
+    <Grid Margin="10">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      
+      <TextBlock Grid.Row="0" Grid.Column="0" Text="Ingredient Name:" VerticalAlignment="Center" Margin="0,5"/>
+      <TextBox Grid.Row="0" Grid.Column="1" AcceptsReturn="False" Text="{Binding Name}" Watermark="Ingredient Name" Margin="0,5"/>
+      
+      <TextBlock Grid.Row="1" Grid.Column="0" Text="Ingredient Category:" VerticalAlignment="Center" Margin="0,5"/>
+      <TextBox Grid.Row="1" Grid.Column="1" AcceptsReturn="False" Text="{Binding Category}" Watermark="Ingredient Category" Margin="0,5"/>
+      
+      <TextBlock Grid.Row="2" Grid.Column="0" Text="Ingredient's Protein:" VerticalAlignment="Center" Margin="0,5"/>
+      <TextBox Grid.Row="2" Grid.Column="1" AcceptsReturn="False" Text="{Binding Protein}" Watermark="Ingredient's Protein" Margin="0,5"/>
+      
+      <TextBlock Grid.Row="3" Grid.Column="0" Text="Ingredient's Fat:" VerticalAlignment="Center" Margin="0,5"/>
+      <TextBox Grid.Row="3" Grid.Column="1" AcceptsReturn="False" Text="{Binding Fat}" Watermark="Ingredient's Fat" Margin="0,5"/>
+      
+      <TextBlock Grid.Row="4" Grid.Column="0" Text="Ingredient's Carb:" VerticalAlignment="Center" Margin="0,5"/>
+      <TextBox Grid.Row="4" Grid.Column="1" AcceptsReturn="False" Text="{Binding Carbs}" Watermark="Ingredient's Carb" Margin="0,5"/>
+      
+      <TextBlock Grid.Row="5" Grid.Column="0" Text="Ingredient's Cost:" VerticalAlignment="Center" Margin="0,5"/>
+      <TextBox Grid.Row="5" Grid.Column="1" AcceptsReturn="False" Text="{Binding Cost}" Watermark="Ingredient's Cost" Margin="0,5"/>
+    
+      <TextBlock Grid.Row="6" Grid.Column="0" Text="Ingredient's Amount:" VerticalAlignment="Center" Margin="0,5"/>
+      <TextBox Grid.Row="6" Grid.Column="1" AcceptsReturn="False" Text="{Binding Amount}" Watermark="Ingredient's Amount" Margin="0,5"/>
+
+      <TextBlock Grid.Row="7" Grid.Column="0" Text="Ingredient's Unit:" VerticalAlignment="Center" Margin="0,5"/>
+      <TextBox Grid.Row="7" Grid.Column="1" AcceptsReturn="False" Text="{Binding IngUnit}" Watermark="Ingredient's Unit" Margin="0,5"/>
+    </Grid>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+      <!-- Yes Button -->
+      <Button Content="Yes" Command="{Binding Confirm}" Width="75" Margin="5"/>
+      <!-- Cancel Button -->
+      <Button Content="Cancel" Command="{Binding Cancel}" Width="75" Margin="5"/>
+    </StackPanel>
+    <TextBlock Text="{Binding Message}" HorizontalAlignment="Center" Foreground="Red"/>
+
+  </StackPanel>
+</UserControl>

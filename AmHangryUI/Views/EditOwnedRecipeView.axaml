@@ -1,0 +1,128 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:AmHangryUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AmHangryUI.Views.EditOwnedRecipeView"
+             x:DataType="vm:EditOwnedRecipeViewModel">
+ 
+    <ScrollViewer>
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="20" >
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Recipe Name:" Grid.Column="0" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+                <TextBox Text="{Binding RecipeName}" Grid.Column="1" Margin="5" />
+                <TextBlock Text="Recipe Description:" Grid.Column="2" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+                <TextBox Text="{Binding RecipeDescription}" Grid.Column="3" Margin="5"/>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Preparation Time (minutes):" Grid.Column="0" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+                <TextBox Text="{Binding RecipePrepTime}" Grid.Column="1" Margin="5"/>
+                <TextBlock Text="Cooking Time (minutes):" Grid.Column="2" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+                <TextBox Text="{Binding RecipeCookTime}" Grid.Column="3" Margin="5"/>
+            </Grid>
+
+            <Border BorderThickness="0,0,0,2" BorderBrush="White"  Padding="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="25*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"  Text="Servings:" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,10"/>
+                    <TextBox Text="{Binding RecipeServings}" Grid.Column="1"/>
+                </Grid>
+            </Border>
+
+            <Grid RowDefinitions="1*, 1*" ColumnDefinitions="1*, 1*" Margin="20" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10"  Grid.Row="0" Grid.Column="0">
+                    <TextBlock Text="Tags" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,10"/>
+                    <TextBox Grid.Column="1" Text="{Binding RecipeTag}" Width="300"/>
+                    <Button Content="Add Tag" Command="{Binding AddTagCommand}" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <ItemsControl Grid.Row="1" Grid.Column="0" ItemsSource="{Binding RecipeTags}" HorizontalAlignment="Center">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Name}" Margin="5" HorizontalAlignment="Center"/>
+                                <Button Content="Remove Tag" x:CompileBindings="False" Command="{Binding $parent[ItemsControl].DataContext.RemoveTagCommand}" CommandParameter="{Binding}" Margin="5"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10"  Grid.Row="0" Grid.Column="1">
+                    <TextBlock  Text="Ingredient:" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,10"/>
+                    <ComboBox x:Name="ingredientComboBox" ItemsSource="{Binding IngredientsAvailable}" SelectedItem="{Binding SelectedIngredient}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <TextBlock Text="Quantity:" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,10"/>
+                    <TextBox Text="{Binding Quantity}" />
+                    <TextBlock Text="{Binding SelectedIngredient.UnitEntity.Unit}" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,10" />
+                    <Button Content="Add ingredient" Command="{Binding AddIngredientCommand}" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <ItemsControl ItemsSource="{Binding RecipeIngredients}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="10,0,0,0" Padding="2">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Ingredient.Name}" Margin="10"/>
+                                    <TextBlock Text="{Binding Quantity, StringFormat=' ({0}'}" Margin="10"/>
+                                    <TextBlock Text="{Binding Ingredient.UnitEntity.Unit, StringFormat=' {0}s)'}" Margin="10"/>
+                                    <Button Content="Remove Ingredient" x:CompileBindings="False" Command="{Binding $parent[ItemsControl].DataContext.RemoveIngredientCommand}" CommandParameter="{Binding}" Margin="5"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+
+            <Border BorderThickness="0,2,0,0" BorderBrush="White"  Padding="10">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10"  Grid.Row="0" Grid.Column="0">
+                    <TextBlock Text="Instructions" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,10"/>
+                    <TextBox Grid.Column="1" Text="{Binding RecipeInstruction}" Width="500" />
+                    <Button Content="Add Instruction" Command="{Binding AddInstructionCommand}" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <Border BorderThickness="0,0,2,0" BorderBrush="White"  Padding="10">
+                <ItemsControl Grid.Row="1" Grid.Column="0" ItemsSource="{Binding RecipeInstructions}" HorizontalAlignment="Center">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Step}" Margin="10" TextWrapping="Wrap"/>
+                                <Button Content="Remove instruction" x:CompileBindings="False" Command="{Binding $parent[ItemsControl].DataContext.RemoveInstructionCommand}" CommandParameter="{Binding}" Margin="5"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Border>
+
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Content="Edit" Command="{Binding ConfirmEditRecipe}" HorizontalAlignment="Center" FontWeight="Bold" Margin="10"/>
+                <Button Content="Cancel" Command="{Binding CancelEditRecipe}" HorizontalAlignment="Center" FontWeight="Bold" Margin="10"/>
+            </StackPanel>
+
+            <TextBlock Text="{Binding Message}" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

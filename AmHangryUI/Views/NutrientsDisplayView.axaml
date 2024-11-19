@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:AmHangryUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AmHangryUI.Views.NutrientsDisplayView"
+             x:DataType="vm:NutrientsDisplayViewModel">
+
+   <UserControl.Styles>
+    <FluentTheme />
+    <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+</UserControl.Styles>
+
+
+  <StackPanel Grid.Row="1" Grid.Column="1" Margin="20">
+
+  <TextBlock Text="{Binding Recipe.Name, StringFormat='Nutrients for the recipe: {0}'}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Margin="10"/>
+  <Grid HorizontalAlignment="Center">
+        <DataGrid ItemsSource="{Binding Recipe.RecipeIngredients}" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ingredient" Binding="{Binding Ingredient.Name}"  FontSize="16"/>
+                <DataGridTextColumn Header="Proteins" Binding="{Binding Proteins}" FontSize="16" />
+                <DataGridTextColumn Header="Fats" Binding="{Binding Fats}" FontSize="16" />
+                <DataGridTextColumn Header="Carbs" Binding="{Binding Carbs}" FontSize="16"/>
+                <DataGridTextColumn Header="Calories" Binding="{Binding Calories}" FontSize="16"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" FontSize="16"/>
+                <DataGridTextColumn Header="Unit" Binding="{Binding Ingredient.UnitEntity.Unit}" FontSize="16"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+
+    <Button Content="Back" Command="{Binding Back}" Width="75" Margin="5"/>
+
+    </StackPanel>
+</UserControl>

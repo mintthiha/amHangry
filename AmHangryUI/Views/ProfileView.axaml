@@ -1,0 +1,71 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:AmHangryUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AmHangryUI.Views.ProfileView"
+             x:DataType="vm:ProfileViewModel">
+  
+    <DockPanel>
+        <ScrollViewer>
+        <StackPanel Background="#333" Spacing="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Panel Grid.Column="0" HorizontalAlignment="Center">
+                    <Rectangle Height="400" Width="400" Fill="LightGray"/>
+                    <Image  Margin="20" Height="400" Width="400" Source="{Binding BitmapProfilePic}"/>
+                </Panel>
+                <Panel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                    <Button Margin="10,20,20,20" HorizontalAlignment="Left" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.EditProfilePictureView}" Content="Change Picture" IsVisible="{Binding $parent[Window].DataContext.VisibleMember}"/>
+                    <Button Margin="10,20,20,20" HorizontalAlignment="Left" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.EditProfilePictureAdmin}" Content="Change Picture (Admin)" CommandParameter="{ Binding SelectedUser }" IsVisible="{Binding $parent[Window].DataContext.VisibleAdmin}"/>
+                </Panel>
+            </Grid>
+
+            <Border Background="#444" Padding="10" CornerRadius="10" BorderThickness="1" BorderBrush="#555">
+                <StackPanel Spacing="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding UserName, StringFormat='Username: {0}'}" FontSize="20" Foreground="White"/>
+                    </Grid>
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding UserDescription, StringFormat='Description: {0}'}" FontSize="20" Foreground="White"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="33*"/>
+                            <ColumnDefinition Width="33*"/>
+                            <ColumnDefinition Width="33*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" HorizontalAlignment="Center" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.EditDescriptionView}" IsVisible="{Binding $parent[Window].DataContext.VisibleMember}">Edit Desc</Button>
+                        <Button Grid.Column="0" HorizontalAlignment="Center" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.EditDescriptionAdmin}" CommandParameter="{ Binding SelectedUser }" IsVisible="{Binding $parent[Window].DataContext.VisibleAdmin}">Edit Desc (Admin) </Button>
+                        <Button Grid.Column="1" HorizontalAlignment="Center" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.EditUsernameView}" IsVisible="{Binding $parent[Window].DataContext.VisibleMember}">Edit Name</Button>
+                        <Button Grid.Column="1" HorizontalAlignment="Center" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.EditUsernameAdmin}" CommandParameter="{ Binding SelectedUser }" IsVisible="{Binding $parent[Window].DataContext.VisibleAdmin}">Edit Name (Admin)</Button>
+                        <Button Grid.Column="2" HorizontalAlignment="Center" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.EditPasswordView}" IsVisible="{Binding $parent[Window].DataContext.VisibleMember}">Change password</Button>
+                        <Button Grid.Column="2" HorizontalAlignment="Center" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.EditPasswordAdmin}" CommandParameter="{ Binding SelectedUser }" IsVisible="{Binding $parent[Window].DataContext.VisibleAdmin}">Change password (Admin)</Button>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <TextBlock Text="My Recipes" FontSize="24" Foreground="White"/>
+            <TextBlock Text="{Binding MyRecipes}" FontSize="20" Foreground="White"/>
+            <StackPanel HorizontalAlignment="Center">
+                <Button x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.DeleteMyAccount}" IsVisible="{Binding $parent[Window].DataContext.VisibleMember}">Delete My Account</Button>
+                <Button x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.DeleteThisAccount}" CommandParameter="{ Binding SelectedUser }" IsVisible="{Binding $parent[Window].DataContext.VisibleAdmin}">Delete This Account</Button>
+                
+            </StackPanel>
+        </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>

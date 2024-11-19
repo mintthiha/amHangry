@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AmHangryUI.Views.DeleteRecipeView"
+             xmlns:vm="using:AmHangryUI.ViewModels"
+             x:DataType="vm:DeleteRecipeViewModel">
+     
+    <StackPanel Grid.Row="1" Grid.Column="1" Margin="20"> 
+     <Border Margin="0 10 0 0"
+                CornerRadius="5"
+                BorderBrush="#ADD8E6" BorderThickness="1.5"
+                Background="#FF6E6E6E"
+                Padding="5">   
+        <StackPanel>      
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+          <TextBlock Grid.Column="0" Padding="2" Text="Recipe you want to delete: "/>
+          <TextBlock Grid.Column="1" Padding="2" HorizontalAlignment="Center" FontWeight="Bold" Text="{Binding Recipe.Name}"/>
+        </StackPanel>
+
+        <TextBlock Text="Are you sure?" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+          <Button Content="Yes" Command="{Binding Confirm}" HorizontalAlignment="Center" Width="75"/>
+          <Button Content="Cancel" Command="{Binding Cancel}" HorizontalAlignment="Center" Width="75"/>
+        </StackPanel>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+    
+</UserControl>

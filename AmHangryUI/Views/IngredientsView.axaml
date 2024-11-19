@@ -1,0 +1,64 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:AmHangryUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AmHangryUI.Views.IngredientsView"
+             x:DataType="vm:IngredientsViewModel">
+
+    <UserControl.Styles>
+        <Style Selector="Border">
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#FF3E8AFF"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+
+        <Style Selector="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+    </UserControl.Styles>
+    <ScrollViewer>
+        <StackPanel Margin="20">
+            <TextBlock Text="{Binding FlashMessage}" HorizontalAlignment="Center" Margin="0,0,10,0" Padding="10"/>
+            <Button x:CompileBindings="False" HorizontalAlignment="Center" Command="{Binding $parent[Window].DataContext.AddIngredientView}" CommandParameter="{Binding}" IsVisible="{Binding $parent[Window].DataContext.VisibleAdmin}">Add An Ingredient!</Button>
+            <ItemsControl ItemsSource="{Binding IngredientList}" HorizontalAlignment="Center">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="2" BorderBrush="#FF1333FF" CornerRadius="5" Margin="10">
+                            <StackPanel Margin="10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="Ingredient Name :" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" Padding="2" VerticalAlignment="Center" Text="{Binding Name}"/>
+                                    <Button Grid.Column="2" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.IngDetails}" CommandParameter="{Binding}">Ingredient Details!</Button>
+                                    <Button Grid.Column="3" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.UpdateIngredient}" CommandParameter="{Binding}" IsVisible="{Binding $parent[Window].DataContext.VisibleAdmin}">Update Ingredient!</Button>
+                                    <Button Grid.Column="4" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.DeleteIng}" CommandParameter="{Binding}" IsVisible="{Binding $parent[Window].DataContext.VisibleAdmin}">Delete Ingredient!</Button>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:AmHangryUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AmHangryUI.Views.EditDescriptionView"
+             x:DataType="vm:EditDescriptionViewModel">
+  
+    <DockPanel Background="Black" Grid.Column="1" Grid.Row="1">
+        <Button DockPanel.Dock="Bottom" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.ProfileView}" IsVisible="{Binding $parent[Window].DataContext.VisibleMember}">Done</Button>
+        <Button DockPanel.Dock="Bottom" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.ProfileDetails}" CommandParameter="{Binding LoggedUser}" IsVisible="{Binding $parent[Window].DataContext.VisibleAdmin}">Done</Button>          
+        <Button DockPanel.Dock="Bottom" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" x:CompileBindings="False" Command="{Binding UpdateDescription}">Submit</Button>
+        <TextBox FontSize="25" Watermark="Edit your description here" Text="{Binding Description}" AcceptsReturn="True" />
+    </DockPanel>
+  
+</UserControl>

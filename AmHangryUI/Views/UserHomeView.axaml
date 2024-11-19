@@ -1,0 +1,58 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:AmHangryUI.ViewModels"
+              mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="500"
+             x:Class="AmHangryUI.Views.UserHomeView"
+             x:DataType="vm:UserHomeViewModel">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,20">
+            <Border Background="LightGray" CornerRadius="10" Padding="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Margin="20" Height="200" Width="200" Stretch="Uniform" Source="../Assets/Thiha.jpg" />
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="20">
+                        <TextBlock Text="Thiha Mien" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Black" />
+                        <TextBlock Text="CEO and Founder of AmHangry" FontSize="22" HorizontalAlignment="Center" Margin="0,10,0,0" Foreground="Black" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel>
+
+                <Border Background="LightGray" MaxWidth="900" CornerRadius="10" Padding="20" Margin="10">
+                    <StackPanel>
+                        <TextBlock Text="Our Mission" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10" Foreground="Black" />
+                        <TextBlock FontSize="18" TextAlignment="Center" TextWrapping="Wrap" MaxWidth="700" HorizontalAlignment="Center" Foreground="Black">
+                            Our mission at AmHangry is to provide the best fitness experience for Discord moderators by offering personalized workout plans, nutritional guidance, and a supportive community. We aim to empower you to achieve your health goals while maintaining your dedication to your online community.
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="LightGray" MaxWidth="900" CornerRadius="10" Padding="20" Margin="10">
+                    <StackPanel>
+                        <TextBlock Text="Founder's Statement" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10" Foreground="Black" />
+                        <TextBlock FontSize="18" TextAlignment="Justify" TextWrapping="Wrap" MaxWidth="700" HorizontalAlignment="Center" Foreground="Black">
+                            I, Thiha Mien, stand before you as the CEO of Amhamgry, with a burning desire to make a meaningful impact on the lives of Discord moderators worldwide. Our promise at Amhamgry is unwavering: to provide a transformative fitness experience tailored explicitly to the unique needs of those who tirelessly uphold the standards of online communities.
+                            I understand the challenges you face, the sacrifices you make, and the relentless dedication you exhibit in your role as moderators. That's why my team and I are committed to offering you more than just a fitness app. We promise to be your partners in your journey toward better health and well-being.
+                            Our desire at Amhamgry is simple yet profound: to empower you to prioritize self-care without sacrificing your commitment to your community. Through our innovative platform, you'll discover personalized workout plans, nutrition guidance, and a supportive community of like-minded individuals who understand your journey.
+                            So, as Thiha Mien, I invite you to join us at Amhamgry. Together, let's redefine what it means to be a Discord moderator – not only as guardians of online spaces but also as champions of our own health and vitality.
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

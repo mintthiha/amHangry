@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:AmHangryUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AmHangryUI.Views.DeleteIngredientView"
+             x:DataType="vm:DeleteIngredientViewModel">
+  <StackPanel Grid.Row="1" Grid.Column="1" Margin="20">
+    <Grid>
+      <Grid.ColumnDefinitions>
+				<ColumnDefinition Width="50*"/>
+				<ColumnDefinition Width="50*"/>
+			</Grid.ColumnDefinitions>
+      <TextBlock Grid.Column="0" Text="Ingredient name you want to delete : " VerticalAlignment="Center"/>
+      <TextBlock Grid.Column="1" Padding="2" VerticalAlignment="Center" Text="{Binding Ingredient.Name}"/>
+    </Grid>
+    <TextBlock Text="Are you sure?" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+      <!-- Yes Button -->
+      <Button Content="Yes" Command="{Binding Confirm}" Width="75"/>
+      <!-- Cancel Button -->
+      <Button Content="Cancel" Command="{Binding Cancel}" Width="75"/>
+    </StackPanel>
+  </StackPanel>
+</UserControl>

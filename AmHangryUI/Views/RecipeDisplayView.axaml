@@ -1,0 +1,136 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:AmHangryUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="555"
+             x:Class="AmHangryUI.Views.RecipeDisplayView"
+              x:DataType="vm:RecipeDisplayViewModel">
+              
+	<StackPanel Grid.Row="1" Grid.Column="1" Margin="20">
+
+    <Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+			</Grid.ColumnDefinitions>
+			<TextBlock Text="Recipe Name:" Grid.Column="0" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+			<TextBlock Text="{Binding Recipe.Name}" Grid.Column="1" Margin="5" />
+			<TextBlock Text="Description:" Grid.Column="2" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+			<TextBlock Text="{Binding Recipe.Description}" Grid.Column="3" Margin="5"/>
+	</Grid>
+
+    <Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+			</Grid.ColumnDefinitions>
+			<TextBlock Text="Owner:" Grid.Column="0" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+			<TextBlock Text="{Binding Recipe.Owner.Username}" Grid.Column="1" Margin="5" />
+			<TextBlock Text="Serving:" Grid.Column="2" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+			<TextBlock Text="{Binding Recipe.Servings}" Grid.Column="3" Margin="5"/>
+		</Grid>
+
+     <Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+			</Grid.ColumnDefinitions>
+			<TextBlock Text="Preparation Time:" Grid.Column="0" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+			<TextBlock Text="{Binding Recipe.PreparationTime, StringFormat={}{0} minutes}" Grid.Column="1" Margin="5" />
+			<TextBlock Text="Cooking Time:" Grid.Column="2" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+			<TextBlock Text="{Binding Recipe.CookingTime,  StringFormat={}{0} minutes}}" Grid.Column="3" Margin="5"/>
+		</Grid>
+
+    <Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+			</Grid.ColumnDefinitions>
+			<TextBlock Text="Total Time:" Grid.Column="0" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+			<TextBlock Text="{Binding Recipe.TotalTime,  StringFormat={}{0} minutes}}" Grid.Column="1" Margin="5" />
+			<TextBlock Text="Calories:" Grid.Column="2" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+			<TextBlock Text="{Binding Recipe.Calories}" Grid.Column="3" Margin="5"/>
+		</Grid>
+
+    <Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+				<ColumnDefinition Width="25*"/>
+			</Grid.ColumnDefinitions>
+			<TextBlock Text="Rating:" Grid.Column="0" FontWeight="Bold" Margin="0,10" HorizontalAlignment="Center"/>
+			<TextBlock Text="{Binding Recipe.Ratings,  StringFormat={}{0} stars}}" Grid.Column="1" Margin="5" />
+			<TextBlock Text="Tags" Grid.Column="2" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,10"/>
+
+	<ItemsControl ItemsSource="{Binding Recipe.Tags}" Grid.Column="3" >
+    <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+            <WrapPanel Orientation="Horizontal"/>
+        </ItemsPanelTemplate>
+    </ItemsControl.ItemsPanel>
+    <ItemsControl.ItemTemplate>
+        <DataTemplate>
+            <Border Margin="10,0,0,0" Padding="2">
+                <TextBlock Text="{Binding Name}"/>
+            </Border>
+        </DataTemplate>
+    </ItemsControl.ItemTemplate>
+</ItemsControl>
+		</Grid>
+
+
+	<Grid RowDefinitions="auto, *" ColumnDefinitions="*, *" >
+		<Border BorderBrush="White" BorderThickness="1" Grid.Row="0" Grid.Column="0">
+    <TextBlock Text="Instructions" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,10"/>
+		</Border>
+
+	<Border BorderBrush="White" BorderThickness="1"  Grid.Row="1" Grid.Column="0">
+    <ItemsControl ItemsSource="{Binding Recipe.Instructions}" HorizontalAlignment="Center">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <TextBlock Text="{Binding Step}" Margin="10" TextWrapping="Wrap"/>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+	</Border>
+	<Border BorderBrush="White" BorderThickness="1"  Grid.Row="0" Grid.Column="1"> 
+	<TextBlock Text="Ingredients" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,10"/>
+    </Border>
+	<Border BorderBrush="White" BorderThickness="1"  Grid.Row="1" Grid.Column="1">
+	<StackPanel>
+	<ItemsControl ItemsSource="{Binding Recipe.RecipeIngredients}" HorizontalAlignment="Center">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                <Border Margin="10,0,0,0" Padding="2">
+					<StackPanel Orientation="Horizontal">
+                  <TextBlock Text="{Binding Ingredient.Name}" Margin="10"/>
+				  <TextBlock Text="{Binding Quantity, StringFormat=' ({0}'}" Margin="10"/>
+				  <TextBlock Text="{Binding Ingredient.UnitEntity.Unit, StringFormat=' {0}s)'}" Margin="10"/>
+				  <TextBlock Text="{Binding Price, StringFormat='  {0:F2}$'}" Margin="10"/>
+				  </StackPanel>
+                  </Border>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+		<TextBlock Text="{Binding Recipe.Cost, StringFormat='Total cost for this recipe: {0:F2}$'}" HorizontalAlignment="Center" Background="Red" FontWeight="Bold"/>
+		</StackPanel>
+			</Border>
+	</Grid>
+
+  <Button  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Command="{Binding AddToFavoriteCommand}" x:CompileBindings="False" IsVisible="{Binding $parent[Window].DataContext.VisibleMember}">Add to my favorite list</Button>
+    <Button  IsVisible ="{Binding $parent[Window].DataContext.VisibleMember}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.RateRecipe}" CommandParameter="{Binding Recipe}">Rate the recipe</Button>
+	<Button  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" x:CompileBindings="False" Command="{Binding $parent[Window].DataContext.ShowNutrients}" CommandParameter="{Binding Recipe}">Nutrients Breakdown</Button>
+	<TextBlock Text="{Binding Message}" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+  </StackPanel>
+
+</UserControl>
